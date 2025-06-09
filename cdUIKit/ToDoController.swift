@@ -7,10 +7,10 @@
 
 import UIKit
 import CoreData
-class ToDoController: UITableViewController {
+class ToDoController: UITableViewController , UISearchBarDelegate{
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     let request : NSFetchRequest<ToDoItem> = ToDoItem.fetchRequest()
-
+    //@IBOutlet weak var searchBar : UISearchBar!
         // var itemArray = [Item]()
     var itemArray = [ToDoItem]()
 
@@ -19,6 +19,7 @@ class ToDoController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       // searchBar.delegate = self
 //        if let items = defaults.array(forKey: "itemArray") as? [Item]{
 //            itemArray = items
 //        }
@@ -71,6 +72,8 @@ extension ToDoController  {
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //itemArray[indexPath.row].isCompleted.toggle()
+         
+
         itemArray[indexPath.row].isDone.toggle()
         
         self.save()
@@ -81,6 +84,14 @@ extension ToDoController  {
         //            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
         //        }
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if(editingStyle == .delete){
+            context.delete(itemArray[indexPath.row])  
+            itemArray.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath],with: .automatic)
+            self.save()
+        }
     }
     @IBAction   func addPressed(_ sender : UIBarButtonItem) {
         var textField = UITextField()
@@ -102,5 +113,22 @@ extension ToDoController  {
         
         alert.addAction(action)
         present(alert,animated: true, completion: nil)
+    }
+}
+
+extension ToDoController {
+   
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let req  : NSFetchRequest<ToDoItem> = ToDoItem.fetchRequest()
+        let predicate = NSPredicate(format: "title CONTAINS %@",  searchBar.text!)
+        req.predicate = predicate
+        let sort = NSSortDescriptor(key: "title", ascending: true)
+        req.sortDescriptors = [sort]
+        do {
+            itemArray = try context.fetch(req)
+        }catch{
+            fatalError("Error \(error)")
+        }
+        tableView.reloadData()
     }
 }
