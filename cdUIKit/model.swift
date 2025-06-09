@@ -2,7 +2,7 @@
 //  model.swift
 //  cdUIKit
 //
-//  Created by qbuser on 08/06/25.
+//  Created by vishnuprasad on 08/06/25.
 //
 
 import Foundation

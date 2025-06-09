@@ -13,6 +13,11 @@ class ToDoController: UITableViewController , UISearchBarDelegate{
     //@IBOutlet weak var searchBar : UISearchBar!
         // var itemArray = [Item]()
     var itemArray = [ToDoItem]()
+    var selCat : Categories? {
+        didSet {
+            load ()
+        }
+    }
 
 //    let defaults = UserDefaults.standard
 //    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Itmes.plist")
@@ -23,7 +28,7 @@ class ToDoController: UITableViewController , UISearchBarDelegate{
 //        if let items = defaults.array(forKey: "itemArray") as? [Item]{
 //            itemArray = items
 //        }
-        load ()
+       
         // Do any additional setup after loading the view.
     }
     
@@ -52,6 +57,8 @@ extension ToDoController  {
 //                fatalError("Error \(error)")
 //            }
 //        }
+        let predicate = NSPredicate(format: "parent.name MATCHES %@", (selCat?.name)!)
+        request.predicate = predicate
         do {
             itemArray = try context.fetch(request)
         }catch{
@@ -102,6 +109,7 @@ extension ToDoController  {
             let item = ToDoItem(context: self.context)
             item.title = textField.text ?? ""
             item.isDone = false
+            item.parent  = self.selCat
             self.itemArray.append(item)
             self.save()
             self.tableView.reloadData()

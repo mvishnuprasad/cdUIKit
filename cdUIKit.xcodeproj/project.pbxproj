@@ -6,8 +6,15 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		D41E73EFE41712FC3E2F79F1 /* Pods_cdUIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36A60168C8FDA4DF5517199C /* Pods_cdUIKit.framework */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		0B2A56FA2DF5E50D00680E7D /* cdUIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cdUIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		36A60168C8FDA4DF5517199C /* Pods_cdUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cdUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		52764746A6A99C5E87BDF25F /* Pods-cdUIKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cdUIKit.debug.xcconfig"; path = "Target Support Files/Pods-cdUIKit/Pods-cdUIKit.debug.xcconfig"; sourceTree = "<group>"; };
+		E99E3509A4AF33864452726C /* Pods-cdUIKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cdUIKit.release.xcconfig"; path = "Target Support Files/Pods-cdUIKit/Pods-cdUIKit.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -36,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D41E73EFE41712FC3E2F79F1 /* Pods_cdUIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -47,6 +55,8 @@
 			children = (
 				0B2A56FC2DF5E50D00680E7D /* cdUIKit */,
 				0B2A56FB2DF5E50D00680E7D /* Products */,
+				EF22A7AD211D9241155B1054 /* Pods */,
+				9E20AFAA09C2C6C0A1897B45 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,6 +68,23 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		9E20AFAA09C2C6C0A1897B45 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				36A60168C8FDA4DF5517199C /* Pods_cdUIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EF22A7AD211D9241155B1054 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				52764746A6A99C5E87BDF25F /* Pods-cdUIKit.debug.xcconfig */,
+				E99E3509A4AF33864452726C /* Pods-cdUIKit.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -65,9 +92,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0B2A57102DF5E50E00680E7D /* Build configuration list for PBXNativeTarget "cdUIKit" */;
 			buildPhases = (
+				5C8B34925D281EEBC0619896 /* [CP] Check Pods Manifest.lock */,
 				0B2A56F62DF5E50D00680E7D /* Sources */,
 				0B2A56F72DF5E50D00680E7D /* Frameworks */,
 				0B2A56F82DF5E50D00680E7D /* Resources */,
+				0695CD47A0E935143060942B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -77,8 +106,6 @@
 				0B2A56FC2DF5E50D00680E7D /* cdUIKit */,
 			);
 			name = cdUIKit;
-			packageProductDependencies = (
-			);
 			productName = cdUIKit;
 			productReference = 0B2A56FA2DF5E50D00680E7D /* cdUIKit.app */;
 			productType = "com.apple.product-type.application";
@@ -127,6 +154,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0695CD47A0E935143060942B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-cdUIKit/Pods-cdUIKit-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-cdUIKit/Pods-cdUIKit-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-cdUIKit/Pods-cdUIKit-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5C8B34925D281EEBC0619896 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-cdUIKit-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0B2A56F62DF5E50D00680E7D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -140,12 +209,14 @@
 /* Begin XCBuildConfiguration section */
 		0B2A57112DF5E50E00680E7D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52764746A6A99C5E87BDF25F /* Pods-cdUIKit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 753SM2S97H;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = cdUIKit/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -168,12 +239,14 @@
 		};
 		0B2A57122DF5E50E00680E7D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E99E3509A4AF33864452726C /* Pods-cdUIKit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 753SM2S97H;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = cdUIKit/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
