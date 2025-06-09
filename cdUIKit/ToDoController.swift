@@ -7,13 +7,21 @@
 
 import UIKit
 import CoreData
+import RealmSwift
 class ToDoController: UITableViewController , UISearchBarDelegate{
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     let request : NSFetchRequest<ToDoItem> = ToDoItem.fetchRequest()
     //@IBOutlet weak var searchBar : UISearchBar!
         // var itemArray = [Item]()
+    let realm = try! Realm()
     var itemArray = [ToDoItem]()
-    var selCat : Categories? {
+    var cat : Results<CatData>!
+//    var selCat : Categories? {
+//        didSet {
+//            load ()
+//        }
+//    }
+    var selCat : CatData? {
         didSet {
             load ()
         }
@@ -48,6 +56,7 @@ extension ToDoController  {
         }
     }
     func load () {
+        ///Userdefaults
 //        let decoder = PropertyListDecoder()
 //        if let data = try? Data(contentsOf: dataFilePath!){
 //            do {
@@ -57,13 +66,17 @@ extension ToDoController  {
 //                fatalError("Error \(error)")
 //            }
 //        }
-        let predicate = NSPredicate(format: "parent.name MATCHES %@", (selCat?.name)!)
-        request.predicate = predicate
-        do {
-            itemArray = try context.fetch(request)
-        }catch{
-            fatalError("Error \(error)")
-        }
+        ///CoreData
+//        let predicate = NSPredicate(format: "parent.name MATCHES %@", (selCat?.name)!)
+//        request.predicate = predicate
+//        do {
+//            itemArray = try context.fetch(request)
+//        }catch{
+//            fatalError("Error \(error)")
+//        }
+        ///Realm
+         cat = realm.objects(CatData.self)
+        
         
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -109,7 +122,7 @@ extension ToDoController  {
             let item = ToDoItem(context: self.context)
             item.title = textField.text ?? ""
             item.isDone = false
-            item.parent  = self.selCat
+           // item.parent = self.selCat
             self.itemArray.append(item)
             self.save()
             self.tableView.reloadData()

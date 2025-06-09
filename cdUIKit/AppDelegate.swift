@@ -17,9 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         do {
-            let real = try Realm()
+            let realm = try Realm()
         }catch {
-            fatalError()
+            //fatalError()
+            print("\(error)")
         }
         return true
     }
